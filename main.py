@@ -87,19 +87,18 @@ def addtask_command(message):
     bot.register_next_step_handler(message, name_project)
 
 def name_project(message):
-    """Сохраняет название сыра и запрашивает ссылку."""
+    """Сохраняет название сыра и запрашивает рекомендации."""
     name = message.text
     user_id = message.from_user.id
     data = [user_id, name]
-    bot.send_message(message.chat.id, "Введите ссылку на ваш вкусный сыр")
-    bot.register_next_step_handler(message, link_project, data=data)
+    bot.send_message(message.chat.id, "Введите, с чем вы бы порекомендовали сыр")
+    bot.register_next_step_handler(message, recommend_cheeses, data=data)
 
-def recommend_cheeses(message):
-    """Сохраняет рекомендации сыра."""
-    recommendation = message.text 
-    user_id = message.from_user.id
-    data = [user_id, recommendation]
-    bot.send_message(message.chat.id, "Введите рекоммендации к вашему сыру")
+def recommend_cheeses(message, data):
+    """Сохраняет рекомендации сыра и запрашивает ссылку."""
+    recommendation = message.text
+    data.append(recommendation)
+    bot.send_message(message.chat.id, "Введите ссылку на ваш вкусный сыр")
     bot.register_next_step_handler(message, link_project, data=data)
 
 def link_project(message, data):
