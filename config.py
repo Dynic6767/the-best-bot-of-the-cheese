@@ -1,0 +1,2 @@
+TOKEN = '8458880515:AAEpoCm2VNkYEKQyXzspPmj0l9FiKS48D1c'
+DATABASE = 'cheese.db'
