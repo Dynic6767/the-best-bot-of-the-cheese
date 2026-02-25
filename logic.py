@@ -87,8 +87,8 @@ class DB_Manager:
 
     def insert_project(self, data):
         sql = """INSERT INTO cheese_projects 
-        (user_id, cheese_name, url, status_id) 
-        values(?, ?, ?, ?)"""
+        (user_id, cheese_name, description, recommendations, url, status_id, photo) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)"""
         self.__executemany(sql, data)
 
     def insert_skill(self, user_id, cheese_name, skill):
@@ -155,4 +155,6 @@ if __name__ == '__main__':
     manager = DB_Manager(DATABASE)
     manager.create_tables()
     manager.default_insert()
+    manager.add_photo_column()
+
     manager.add_photo_column()
